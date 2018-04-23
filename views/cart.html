@@ -1,0 +1,62 @@
+<div class="ui grid" ng-init="RunJ()">
+  <div class="ten wide column">
+    <table class="ui celled table">
+      <thead>
+        <tr><th>Image</th>
+        <th>Name</th>
+        <th>Unit Price</th>
+        <th>Qty</th>
+        <th>Cost</th>
+        <th>Remove</th>
+      </tr></thead>
+      <tbody>
+        <tr ng-repeat="item in cart track by $index">
+          <td><img width="40vh" ng-src="{{item.imagelink}}"></td>
+          <td>{{item.name}}</td>
+          <td>&euro; {{item.price}}</td>
+          <td>
+            <div class="ui input focus">
+              <input type="number" min="0" max="99" ng-model="item.qty">
+            </div>
+          </td>
+          <td>&euro; {{item.price * item.qty}}</td>
+          <td><button ng-click="Remove($index)" class="ui fluid button"><i class="remove icon"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="color:green;font-size:24px;" ng-if="hideAfterCheckout" >Your Shopping Cart is empty!</p>
+  </div>
+  <div class="six wide column">
+    <h2> Shipping Details</h2>
+    <form class="ui form" method="POST" >
+      <div class="field">
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Name">
+      </div>
+      <div class="field">
+        <label>Address</label>
+        <input type="text" name="address" placeholder="Address">
+      </div>
+      <div class="field">
+        <label>City</label>
+        <input type="text" name="city" placeholder="City">
+      </div>
+      <div class="field">
+        <label>Phone Number</label>
+        <input type="text" name="phone" placeholder="Phone Number">
+      </div>
+      <div class="ui error message"></div>
+      <div class="ui segment">
+        <h3><b>Subtotal: </b> &euro; {{ getTotal() }} </h3>
+        <h3><b>Shipping: </b> no shipping costs in demo app </h3>
+        <h3><b>Tax (20%): </b> &euro; {{ (0.2 * getTotal()).toFixed(2) }} </h3>
+        <div class="ui divider"></div>
+        <h3><b>Total: </b> &euro; {{ (1.2 * getTotal()).toFixed(2) }} </h3>
+        <button class="ui submit fluid secondary basic button" id="checkoutButton" ng-hide="hideAfterCheckout" >Checkout</button>
+
+      </div>
+    </form>
+  </div>
+</div>
+  
+
