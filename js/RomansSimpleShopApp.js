@@ -76,6 +76,8 @@
                 } else {
                   return $rootScope.cart.length + ' products';
                 }
+            } else {
+              return '0 products';
             }
           }
       $scope.ChangeSlide = function(isRight) {
@@ -139,16 +141,29 @@
 
 	app.controller('cartController', function($scope, $rootScope) {
       $scope.qty = [];
-      $scope.hideAfterCheckout=false;
-      if($scope.cart.length==0) {
-        $scope.hideAfterCheckout = true;
+
+      $scope.submitCheckoutForm = function(isValid) {
+
+        if (isValid) {
+            $scope.checkoutcomplete=true;
+            $rootScope.cart=[];
         }
+    
+      };
+  
       $scope.getTotal = function() {
         let sub = 0;
         if ($rootScope.cart) {
           for (i = 0; i < $rootScope.cart.length; i++) {
             sub += $rootScope.cart[i].price * $rootScope.cart[i].qty;
-          } 
+          }
+          if($rootScope.cart.length>0 ) {
+            $scope.ItemsInCart=true;
+          } else {
+            $scope.ItemsInCart=false;
+          }
+        } else {
+          $scope.ItemsInCart=false;
         }
         return sub.toFixed(2);
       }
@@ -157,43 +172,8 @@
         $rootScope.cart.splice(index, 1);
       }
       
-      $scope.RunJ = function() {
-        $('.ui.form')
-          .form({
-            fields: {
-              name: {
-                identifier: 'name',
-                rules: [
-                  {
-                    type   : 'empty',
-                    prompt : 'Please enter your name'
-                  }
-                ]
-              },
-              address: {
-                identifier: 'address',
-                rules: [
-                  {
-                    type   : 'empty',
-                    prompt : 'Please enter your address'
-                  }
-                ]
-              },
-              city: {
-                identifier: 'city',
-                rules: [
-                  {
-                    type   : 'empty',
-                    prompt : 'Please enter your city'
-                  }
-                ]
-              }
-            }
-          });
-      }
-   
-
-     
+ 
+    
       
 	});
 
