@@ -1,0 +1,43 @@
+body {
+  background-color: #FFFFFF;
+}
+.ui.menu .item img.logo {
+  margin-right: 1.5em;
+}
+.main.container {
+  margin-top: 7em;
+}
+.wireframe {
+  margin-top: 2em;
+}
+.ui.footer.segment {
+  margin: 5em 0em 0em;
+  padding: 5em 0em;
+}
+.ui.card>.image>img, .ui.cards>.card>.image>img {
+    height: 25vh;
+}
+.attached.ui.button {
+  display: inline-block; 
+  height: 100%;
+}
+.slide {
+  display: block;
+  height: auto;
+  width: 100%;
+  max-height: 50vh;
+  max-width: 40vh;
+  margin: auto;
+}
+.slide.four {
+  max-height: 25vh;
+  max-width: 20vh
+}
+.ui.celled.grid>.row>.column.nopad {
+  padding-left: 0;
+  padding-right: 0;
+}
+.ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column.slide {
+    margin: auto;
+}
+

@@ -1,0 +1,56 @@
+<div>
+<span ng-if="orderedlist.length > 0">Showing {{filtered.length}} of {{ordercatlength}} items in {{ordercatname}}</span>
+<span ng-if="orderedlist.length == 0">Please select a category</span>
+<span style="float:right">
+  <div class="ui dropdown">
+    <div class="text">Sort By</div>
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      <div class="item">None</div>
+      <div class="item" ng-click="Sort('p')">Price</div>
+      <div class="item" ng-click="Sort('abc')">Alphabetical</div>
+      <div class="item" ng-click="Sort('rat')">Rating</div>
+    </div>
+  </div>
+  <div class="ui checkbox">
+    <input type="checkbox" name="checkbox" ng-model="stockCheck">
+    <label>In Stock Only</label>
+  </div>
+</span>
+<div class="ui divider"></div>
+</div>
+<div class="ui grid">
+  <div class="four wide column">
+    <div class="ui segment">
+      <div class="ui accordion" ng-repeat="d in data" ng-init="RunJ()">
+        <div class="title">
+          <i class="dropdown icon"></i>
+          {{d.category}}
+        </div>
+        <div class="content">
+          <div ng-repeat="sub in d.subcategories">
+            <button ng-click="selectItem(sub)" class="ui fluid secondary basic button">{{sub.name}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="twelve wide column">
+    <div class="ui three link cards" >
+      <div class="card" ng-repeat="card in orderedlist | filter:FilterFunction as filtered">
+        <a href="#!product?name={{card.name}}" class="image">
+          <img ng-src="{{card.imagelink}}">
+        </a>
+        <a href="#!product?name={{card.name}}" class="content">
+          <div class="header">{{card.name}}</div>
+          <div class="description">
+            &euro; {{card.price}}
+          </div>
+        </a>
+        <div class="extra content">
+          <button class="ui fluid button" ng-click="AddCart(card)">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

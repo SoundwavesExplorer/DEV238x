@@ -1,0 +1,39 @@
+<style>
+ span {color:red;}
+  </style>
+<div class="ui grid">
+  <div class="eight wide column">
+    <form class="ui form" name="contactform" ng-submit="submitForm(contactform.$valid)" >
+      <div class="field">
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Name" ng-model="name" required><span ng-show="contactform.name.$invalid">Name is required</span>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Email" ng-model="email" required><span ng-show="contactform.email.$invalid">Email is required</span>
+      </div>
+      <div class="field">
+        <label>Subject</label>
+        <select class="ui dropdown" name="subject" ng-model="subject" required>
+          <option value="">Select Subject</option>
+          <option value="subject1">ask a question</option>
+          <option value="subject2">give general feedback</option>
+          <option value="subject3">report a problem with the website</option>
+        </select><span ng-show="contactform.subject.$invalid">Subject is required</span>
+      </div>
+      <div class="field">
+        <label>Message</label>
+        <textarea name="message" cols="5" placeholder="Message" ng-model="message" required></textarea><span ng-show="contactform.message.$invalid">Leave us a message!</span>
+      </div>
+      <div class="field">
+        <p><u>Additional contact data:</u><br>Email:&nbsp;<a href="mailto:contact@rosenmayr.consulting">contact@rosenmayr.consulting</a><br>Telephone: 1234567 89 0</p>
+      </div>
+
+
+      <button type="submit" ng-hide="ValidSubmit" class="ui submit fluid secondary basic button" >Send</button>
+      <p style="color:green;font-size:24px;" ng-show="ValidSubmit" >Thanks for your feedback!</p>
+    </form>
+  </div>
+</div>
+
+
